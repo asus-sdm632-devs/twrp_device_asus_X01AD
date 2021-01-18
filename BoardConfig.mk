@@ -53,10 +53,8 @@ BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
 
 # Encryption
-TARGET_CRYPTFS_HW_PATH := vendor/qcom/opensource/commonsys/cryptfs_hw
-TARGET_HW_DISK_ENCRYPTION := true
-PLATFORM_SECURITY_PATCH := 2029-10-01
-PLATFORM_VERSION := 16.1.0
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO_FBE := true
 
 # Keymaster
 TARGET_PROVIDES_KEYMASTER := true
@@ -118,5 +116,11 @@ TW_INPUT_BLACKLIST := "hbtp_vm"
 # exFAT FS Support
 TW_INCLUDE_FUSE_EXFAT := true
 
+# Hack: prevent anti rollback
+PLATFORM_SECURITY_PATCH := 2029-10-01
+
 # NTFS Support
 TW_INCLUDE_FUSE_NTFS := true
+
+# Platform version
+PLATFORM_VERSION := 16.1.0
